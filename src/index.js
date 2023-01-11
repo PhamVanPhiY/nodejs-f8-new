@@ -3,6 +3,10 @@ const path = require("path");
 const morgan = require("morgan");
 const hbs = require("express-handlebars");
 const route = require("./routes");
+const db = require("./config/db");
+
+//Connect to DB
+db.connect();
 
 const app = express();
 const port = 3000;
@@ -32,7 +36,7 @@ app.set("view engine", "hbs");
 
 app.set("views", path.join(__dirname, "resources/views"));
 
-// Route init
+// Routes init
 route(app);
 
 app.listen(port, () => {
